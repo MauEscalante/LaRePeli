@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -36,7 +36,7 @@ const Register = () => {
 
       .then(() => navigate("/login"))
       .catch(() => alert("Usuario no existe"));
-      navigate("/")
+    navigate("/")
   };
 
   return (
@@ -95,7 +95,7 @@ const Register = () => {
         <div className="col"></div>
       </div>
     </>
-    
+
   );
 };
 

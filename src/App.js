@@ -10,6 +10,7 @@ import MovieDetails from "./components/MovieDetails";
 import Profile from "./components/Profile";
 import Footer from "./components/Footer";
 import Users from "./components/Users";
+import { ChangePassoword } from "./components/changePassword";
 
 const App = () => {
   const [genre, setGenre] = useState([]);
@@ -49,6 +50,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Register />} />
         <Route path="/users" element={<Users />} />
+        <Route path="/changePassword" element={<ChangePassoword />} />
         <Route path="/movieDetails/:movieId"  element={<MovieDetails />} />
       </Routes>
       <Footer/>

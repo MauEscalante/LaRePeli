@@ -43,8 +43,8 @@ const Login = () => {
   return (
     <>
       <img
-        src={`https://blogdesuperheroes.es/imagen-noti/bds_first-class_poster-091.jpg`}
-        style={{ maxWidth: 1400 }}
+        src={`https://img.freepik.com/free-photo/lightbox-with-popcorn-table_23-2148470123.jpg?t=st=1713364617~exp=1713368217~hmac=0d9c898e45cc946cf4f805c2c7a50da6f8870e9f6fa131a89f48d0e505afda96&w=1380`}
+        style={{ height: '250px', width: '100%' }}
         alt=""
       />
       <div className="container p-5">
@@ -61,7 +61,7 @@ const Login = () => {
                   onChange={handdleEmail}
                   value={email}
                 />
-                
+
               </div>
               <div className="mb-3">
                 <label className="form-label">Contraseña</label>
@@ -81,7 +81,7 @@ const Login = () => {
               <button type="submit" className="btn btn-primary">
                 Ingresar
               </button>
-              
+
             </form>
           </div>
           <div className="col"></div>

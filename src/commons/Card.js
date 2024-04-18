@@ -6,7 +6,7 @@ const Card = ({ data }) => {
   const userNoparse = localStorage.getItem("user");
   const user = JSON.parse(userNoparse);
   const addFavorites = (data) => {
-    axios.post("http://localhost:3001/api/users/favorites", {
+    axios.post("http://localhost:3000/api/users/favorites", {
       userId: user.id,
       movie: data,
     });
