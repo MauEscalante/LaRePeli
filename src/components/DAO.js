@@ -36,6 +36,18 @@ a modo q se entienda asi seria el schema de usuarios:
     }
 */
 
+function createUser(user){
+    //cuando se haga con DB, la password iria encriptada
+    usuarios.push({
+        name: user.name,
+        lastName: user.lastName,
+        email:  user.email,
+        password: user.password,
+        favoritos:[],
+        verDespues:[]
+    })
+}
+
 function removeToFavorites(entertainment,userId) {
     //para saber cual es el indice donde se encuentra el usuario buscado
     const userIndex = usuarios.findIndex(user => user.id === userId);
