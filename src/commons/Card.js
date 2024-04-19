@@ -1,16 +1,12 @@
 import React from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import {addFavorites} from "../dbSimulator"
 
 const Card = ({ data }) => {
   const userNoparse = localStorage.getItem("user");
   const user = JSON.parse(userNoparse);
-  const addFavorites = (data) => {
-    axios.post("http://localhost:3000/api/users/favorites", {
-      userId: user.id,
-      movie: data,
-    });
-  };
+
+  
   return (
     <div className="col-3 mt-5" key={data.id}>
       <div className="card " style={{ width: "18rem" }}>
@@ -26,7 +22,7 @@ const Card = ({ data }) => {
           <p className="card-text">{data.overview.slice(0, 80) + "..."}</p>
           <button
             className="btn btn-primary"
-            onClick={() => addFavorites(data)}
+            onClick={() => addFavorites({data},user.id)}
           >
             Add To Favorites
           </button>

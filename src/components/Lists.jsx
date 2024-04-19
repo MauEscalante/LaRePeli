@@ -1,29 +1,34 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
 
-const Favorites = () => {
-  const [favorites, setFavorites] = useState([]);
+import React, { useEffect, useState } from "react";
+import { getFavorites, removeToFavorites, getWatchLater, removeToWatchLater } from "../dbSimulator";
+
+const List = ({ type }) => {
+  const [lists, setList] = useState([]);
   const userNoparse = localStorage.getItem("user");
   const user = JSON.parse(userNoparse);
-  
+
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/api/users/favorites/${user.id}`)
-      .then((res) => setFavorites(res.data));
+    const fetchList = () => {
+      const fetchedList = type == "Favorites" ? getFavorites(user.id) : getWatchLater(user.id)
+      setList(fetchedList);
+    };
+
+    fetchList();
   }, []);
 
-  const removeFavorites = (id) => {
-    axios
-      .delete(
-        `http://localhost:3000/api/users/favorites/?userId=${user.id}&movieId=${id}`
-      )
+  const handleRemoveFavorite = async (id) => {
+    type == "Favorites" ?  removeToFavorites(id, user.id) : removeToWatchLater(user.id)
+    
+
+    const updatedList = lists.filter((movie) => movie.movie_id !== id);
+    setList(updatedList);
   };
   return (
     <>
       <div className="container text-center">
-        <h1 className="pt-5">Favorites</h1>
+        <h1 className="pt-5">{type}</h1>
         <div className="row">
-          {favorites.map((data, i) => (
+          {lists.map((data, i) => (
             <div className="col-3 mt-5" key={i}>
               <div className="card" style={{ width: "18rem" }}>
                 <img
@@ -38,7 +43,7 @@ const Favorites = () => {
                   </p>
                   <button
                     className="btn btn-danger"
-                    onClick={() => removeFavorites(data.id)}
+                    onClick={() => handleRemoveFavorite(data.movie_id)}
                   >
                     Remove
                   </button>
@@ -52,4 +57,4 @@ const Favorites = () => {
   );
 };
 
-export default Favorites;
+export default List;

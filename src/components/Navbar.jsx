@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import React from "react";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,9 +10,7 @@ const Navbar = () => {
   const user = JSON.parse(userNoparse);
   const navigate = useNavigate();
   useEffect(() => {
-    if (token) {
-      axios.post(`http://localhost:3000/api/users/me`, { token });
-    }
+    console.log("TERMINAR ACA")
   });
 
   const handdleLogout = (e) => {
@@ -33,7 +31,8 @@ const Navbar = () => {
               <ul className="primary-menu nav nav-pills">
                 <li className="nav-item"><a className="nav-link smoth-animation " href="/">Peliculas</a></li>
                 <li className="nav-item"><a className="nav-link smoth-animation" href="/series">Series</a></li>
-                <li className="nav-item"><a className="nav-link smoth-animation" href="/favoritos">favoritos</a></li>
+                <li className="nav-item"><a className="nav-link smoth-animation" href="/favorites">favoritos</a></li>
+                <li className="nav-item"><a className="nav-link smoth-animation" href="/verDespues">ver Despues</a></li>
                 <li className="nav-item dropdown">
                   <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Categoria
@@ -88,14 +87,7 @@ const Navbar = () => {
     </div>
     
     </nav >
-    /*     <nav style={{ backgroundColor: "#032541", padding: 20, display:"flex" }}>
-      <Link to="/">
-      <h1 style={{paddingRight:1100, color:"wheat"}}>TMDB</h1>
-      </Link>
-      <Link to="/login">
-        <button>Login</button>
-      </Link>
-    </nav> */
+  
   );
 };
 

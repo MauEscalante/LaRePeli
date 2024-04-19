@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { createUser } from "../dbSimulator"
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -26,17 +26,12 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:3000/api/users/register", {
-        name,
-        lastname,
-        email,
-        password,
-      })
-
-      .then(() => navigate("/login"))
-      .catch(() => alert("Usuario no existe"));
-    navigate("/")
+    try {
+      createUser(name, lastname, email, password);
+      navigate('/login')
+    } catch {
+      alert("Usuario no existe")
+    }
   };
 
   return (

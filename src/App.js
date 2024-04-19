@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import Register from "./components/Register";
 import { Route, Routes } from "react-router";
 import Home from "./components/Home";
-import Favorites from "./components/Favorites";
+import Lists from "./components/Lists";
 import MovieDetails from "./components/MovieDetails";
 import Profile from "./components/Profile";
 import Footer from "./components/Footer";
@@ -16,6 +16,8 @@ const App = () => {
   const [genre, setGenre] = useState([]);
   const [populars, setPopulars] = useState([]);
   const [seriePopulars, setSeriePopulars] = useState([]);
+  const userNoparse = localStorage.getItem("user");
+  const user = JSON.parse(userNoparse);
 
   useEffect(() => {
     //GENEROS
@@ -45,7 +47,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home populars={populars} media="movie" entretenimiento="Peliculas"/>} />
         <Route path="/series" element={<Home populars={seriePopulars}  media="tv" entretenimiento="Series"/>} />
-        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/favorites" element={<Lists type="Favorites"/>} />
+        <Route path="/verDespues" element={<Lists  type="VerDespues"/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Register />} />

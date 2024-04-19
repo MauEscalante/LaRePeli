@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { getFavorites } from "../dbSimulator";
 
 const Profile = () => {
   const userNoparse = localStorage.getItem("user");
@@ -8,9 +9,7 @@ const Profile = () => {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3001/api/users/favorites/${user.id}`)
-      .then((res) => setFavorites(res.data));
+    setFavorites(getFavorites(user.id))
   }, []);
 
   return (
@@ -25,7 +24,7 @@ const Profile = () => {
         </div>
         <div className="col-9">
           <h1 className="text-light">
-            {(user.name + " " + user.lastname).toUpperCase()}
+            {(user.name + " " + user.lastName).toUpperCase()}
           </h1>
         </div>
       </div>

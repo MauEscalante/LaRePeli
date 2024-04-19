@@ -1,7 +1,7 @@
 import React from "react";
-import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {loginUser} from '../dbSimulator'
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,23 +19,22 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     //USERS
-    axios
-      .post("http://localhost:3000/api/users/login", { email, password })
-      .then((res) => {
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem(
-          "user",
-          JSON.stringify({
-            name: res.data.name,
-            id: res.data.id,
-            email: res.data.email,
-            lastname: res.data.lastname,
-          })
-        );
-      })
-      .then(() => navigate("/"))
-      .catch(() => alert("Usuario no existe"));
-    navigate("/");
+    try{
+      const payload=loginUser({email,password})
+      localStorage.setItem("token",payload.id)
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          name: payload.name,
+          id: payload.id,
+          email: payload.email,
+          lastname: payload.lastname,
+        }))
+      navigate("/")
+    }catch{
+      alert("Usuario no existe");
+    }
+  
   };
 
 

@@ -12,7 +12,6 @@ export function Search({ media }) {
   };
 
   const handleSubmit = (e) => {
-    console.log("Busca peli")
     e.preventDefault();
     axios
       .get(
