@@ -125,6 +125,9 @@ const Navbar = () => {
                       <li><a href="/verDespues"> Por ver</a></li>
                     </ul>
                   </li>
+
+                  <li><a href="/changePassword"> Cambiar contraseña</a></li>
+
                   <button className="dropdown-item" onClick={handdleLogout}>
                     Logout
                   </button>

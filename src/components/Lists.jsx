@@ -19,11 +19,11 @@ const List = ({ type, title }) => {
          fetchedList = getVistas(user.id)
       }
       setList(fetchedList)
-
     };
 
     fetchList();
   }, []);
+
 
 
   return (

@@ -17,9 +17,8 @@ export function Search({ media }) {
       .get(
         `https://api.themoviedb.org/3/search/${media}?api_key=425c2d87b8b9c812c4101db1f80fd9e5&language=en-US&query=${value}&include_adult=false`
       )
-      .then((res) => setEntretenimiento(res.data.results[0].known_for));
+      .then((res) => setEntretenimiento(res.data.results));
 
-    setValue("");
   };
   return (
     <>
@@ -40,10 +39,12 @@ export function Search({ media }) {
         </form>
       </div>
 
-      <div className="row container-fluid">
-        {entretenimiento.map((data, i) => (
-          <Card data={data} key={data.movie_id} type="Entreteiment" />
-        ))}
+      <div className="container text-center">
+        <div className="row">
+          {entretenimiento.map((data, i) => (
+            <Card data={data} key={data.id} type="Entreteiment" />
+          ))}
+        </div>
       </div>
     </>
   );

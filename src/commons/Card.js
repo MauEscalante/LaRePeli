@@ -22,16 +22,19 @@ const Card = ({ data }) => {
   const toggleFavorite = () => {
     setFavorito(!favorito);
     favorito ? addFavorites(data, user.id) : removeToFavorites(data,user.id)
+    
   };
 
   const toggleVerDespues = () => {
     setVer(!verDespues);
     verDespues ? addToWatchLater(data, user.id) : removeToWatchLater(data,user.id)
+    
   };
 
   const toggleVistas = () => {
     setVistas(!vistas);
     vistas ? addToVistas(data, user.id) : removeToVistas(data,user.id)
+    
   };
 
 

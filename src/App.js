@@ -27,7 +27,7 @@ const App = () => {
         <Route path="/verDespues" element={<Lists type="VerDespues" title="Ver despues"/>} />
         <Route path="/vistas" element={<Lists type="vistas" title="Vistas"/>} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<Users />} />
         <Route path="/register" element={<Register />} />
         <Route path="/users" element={<Users />} />
         <Route path="/changePassword" element={<ChangePassoword />} />
