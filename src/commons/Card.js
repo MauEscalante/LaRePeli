@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { addFavorites, addToWatchLater, isFavorite, addToVistas,removeToWatchLater,removeToVistas, removeToFavorites,inWatchLater,inVistas } from "../dbSimulator"
+import { addFavorites, addToWatchLater, isFavorite, addToVistas, removeToWatchLater, removeToVistas, removeToFavorites, inWatchLater, inVistas } from "../dbSimulator"
 import "../Style/Card.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faEye, faEyeSlash, faList, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
@@ -14,27 +14,30 @@ const Card = ({ data }) => {
   const [verDespues, setVer] = useState(false);
 
   useEffect(() => {
-    setFavorito(isFavorite(user.id, data.id));
-    setVer(inWatchLater(user.id, data.id))
-    setVistas(inVistas(user.id, data.id))
+    if (user) {
+      setFavorito(isFavorite(user.id, data.id));
+      setVer(inWatchLater(user.id, data.id))
+      setVistas(inVistas(user.id, data.id))
+    }
+
   }, [data.id]); // Actualiza cuando cambia el ID de la película
 
   const toggleFavorite = () => {
     setFavorito(!favorito);
-    favorito ? addFavorites(data, user.id) : removeToFavorites(data,user.id)
-    
+    favorito ? addFavorites(data, user.id) : removeToFavorites(data, user.id)
+
   };
 
   const toggleVerDespues = () => {
     setVer(!verDespues);
-    verDespues ? addToWatchLater(data, user.id) : removeToWatchLater(data,user.id)
-    
+    verDespues ? addToWatchLater(data, user.id) : removeToWatchLater(data, user.id)
+
   };
 
   const toggleVistas = () => {
     setVistas(!vistas);
-    vistas ? addToVistas(data, user.id) : removeToVistas(data,user.id)
-    
+    vistas ? addToVistas(data, user.id) : removeToVistas(data, user.id)
+
   };
 
 
