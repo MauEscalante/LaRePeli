@@ -1,102 +1,89 @@
-
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { getFavorites } from "../dbSimulator";
+import React, { useEffect, useState } from "react";
+import { getFavorites, getWatchLater, getVistas } from "../dbSimulator";
+import Card from "../commons/Card";
 
 const Profile = () => {
   const userNoparse = localStorage.getItem("user");
   const user = JSON.parse(userNoparse);
-  const [favorites, setFavorites] = useState([]);
+  const [favorito, setFavorito] = useState([]); 
+  const [verDespues, setVerDespues] = useState([]);
+  const [vistas, setVistas] = useState([]);
 
   useEffect(() => {
-    setFavorites(getFavorites(user.id))
+    const fetchList = () => {
+      setFavorito(getFavorites(user.id))
+      setVerDespues(getWatchLater(user.id))
+      setVistas(getVistas(user.id))
+       
+    };
+
+    fetchList();
   }, []);
+
+  
 
   return (
     <>
-      <div className="row p-2 " style={{ backgroundColor: "#111d4a" }}>
-        <div className="col-3 ">
-          <img
-            src={`https://happytravel.viajes/wp-content/uploads/2020/04/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png}`}
-            className="card-img-top"
-            alt="..."
-          />
-        </div>
-        <div className="col-9">
-          <h1 className="text-light">
-            {(user.name + " " + user.lastName).toUpperCase()}
-          </h1>
-        </div>
-      </div>
+      {user ? (
+        <>
+          <div className="row p-2 " style={{ backgroundColor: "#000016" }}>
+            <div className="col-3 ">
+              <img
+                src={`https://happytravel.viajes/wp-content/uploads/2020/04/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png}`}
+                className="card-img-top"
+                alt="..."
+              />
+            </div>
+            <div className="col-9">
+              <h1 className="text-light">
+                {(user.name + " " + user.lastname).toUpperCase()}
+              </h1>
+            </div>
+          </div>
 
-      <div className="row pt-2" style={{ backgroundColor: "#F8F7F9" }}>
-        <div className="col-7">
-          <div className="p-3 text-center">
-            <h1 className="pt-5" style={{ color: "#2B2D42" }}>
-              {" "}
-              {favorites.length} Favorites{" "}
+          <div className="container text-center">
+            <h1 className="pt-5">Favoritos</h1>
+            <div className="row">
+              {favorito.map((data, i) => (
+                <Card data={data} key={data.id} />
+              ))}
+            </div>
+          </div>
+
+          <div className="container text-center">
+            <h1 className="pt-5">Ver despues</h1>
+            <div className="row">
+              {verDespues.map((data, i) => (
+                <Card data={data} key={data.id} />
+              ))}
+            </div>
+          </div>
+
+          <div className="container text-center">
+            <h1 className="pt-5">Vistas</h1>
+            <div className="row">
+              {vistas.map((data, i) => (
+                <Card data={data} key={data.id}/>
+              ))}
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className="row p-2 " style={{ backgroundColor: "#111d4a" }}>
+          <div className="col-3 ">
+            <img
+              src={`https://happytravel.viajes/wp-content/uploads/2020/04/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png}`}
+              className="card-img-top"
+              alt="..."
+            />
+          </div>
+          <div className="col-9">
+            <h1 className="text-light">
+              USER NOT FOUND
             </h1>
           </div>
         </div>
-        <div className="col">
-          <div
-            id="carouselExampleControls"
-            className="carousel slide"
-            data-bs-ride="carousel"
-          >
-            <div className="carousel-inner">
-              {favorites.map((data, i) => (
-                <div className="carousel-item active" key={i}>
-                  <div className="card mb-3">
-                    <div className="row g-0">
-                      <div className="col-md-4">
-                        <img
-                          src={`https://image.tmdb.org/t/p/original/${data.img}`}
-                          className="card-img-top"
-                          alt="..."
-                        />
-                      </div>
-                      <div className="col-md-8">
-                        <div className="card-body">
-                          <h3 className="card-title">{data.title}</h3>
-                          <p className="card-text">
-                            {data.description.slice(0, 200) + "..."}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <button
-              className="carousel-control-prev"
-              type="button"
-              data-bs-target="#carouselExampleControls"
-              data-bs-slide="prev"
-            >
-              <span
-                className="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="visually-hidden">Previous</span>
-            </button>
-            <button
-              className="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselExampleControls"
-              data-bs-slide="next"
-            >
-              <span
-                className="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="visually-hidden">Next</span>
-            </button>
-          </div>
-        </div>
-        <div className="col-1"></div>
-      </div>
+      )}
     </>
   );
 };

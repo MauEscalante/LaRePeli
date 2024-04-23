@@ -63,7 +63,7 @@ const Card = ({ data }) => {
               ) : (
                 <FontAwesomeIcon icon={faHeart} style={{ color: '#ef6161' }} />
               )}</div>
-            <div className="opcion" onClick={toggleVerDespues}>
+            <div className="opcion" onClick={toggleVistas}>
 
               {vistas ? (
                 <FontAwesomeIcon icon={faEye} style={{ color: "#000000" }} />
@@ -72,7 +72,7 @@ const Card = ({ data }) => {
               )}
 
             </div>
-            <div className="opcion" onClick={toggleVistas}>
+            <div className="opcion" onClick={toggleVerDespues}>
 
               {!verDespues ? (
                 <FontAwesomeIcon icon={faPlusCircle} style={{ color: "#000000" }} />

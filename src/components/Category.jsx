@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Card from "../commons/Card";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import Search from "./Search";
 
 function Category({media}) {
   const [Populars, setPopulars] = useState([]);
