@@ -11,52 +11,29 @@ import Profile from "./components/Profile";
 import Footer from "./components/Footer";
 import Users from "./components/Users";
 import { ChangePassoword } from "./components/changePassword";
+import Category from "./components/Category";
 
 const App = () => {
-  const [genre, setGenre] = useState([]);
-  const [populars, setPopulars] = useState([]);
-  const [seriePopulars, setSeriePopulars] = useState([]);
-  const userNoparse = localStorage.getItem("user");
-  const user = JSON.parse(userNoparse);
-
-  useEffect(() => {
-    //GENEROS
-    axios
-      .get(
-        `https://api.themoviedb.org/3/genre/movie/list?api_key=425c2d87b8b9c812c4101db1f80fd9e5&language=en-US`
-      )
-      .then((res) => setGenre(res.data.genres));
-
-    //POPULARES
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=425c2d87b8b9c812c4101db1f80fd9e5&language=en-US&page=1`
-      )
-      .then((res) => setPopulars(res.data.results));
-
-      //SERIES POPULARES
-      axios.get(
-        `https://api.themoviedb.org/3/tv/popular?api_key=425c2d87b8b9c812c4101db1f80fd9e5&language=en-US&page=1`
-      )
-      .then(res=>setSeriePopulars(res.data.results))
-  }, []);
 
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home populars={populars} media="movie" entretenimiento="Peliculas"/>} />
-        <Route path="/series" element={<Home populars={seriePopulars}  media="tv" entretenimiento="Series"/>} />
-        <Route path="/favorites" element={<Lists type="Favorites"/>} />
-        <Route path="/verDespues" element={<Lists  type="VerDespues"/>} />
+        <Route path="/" element={<Home media="movie" entretenimiento="Peliculas" />} />
+        <Route path="/tv" element={<Home media="tv" entretenimiento="Series" />} />
+        <Route path={"/tv/:categoria"} element={<Category media="tv" />} />
+        <Route path={"/movie/:categoria"} element={<Category media="movie" />} />
+        <Route path="/favorites" element={<Lists type="Favorites" title="Favoritas"/>} />
+        <Route path="/verDespues" element={<Lists type="VerDespues" title="Ver despues"/>} />
+        <Route path="/vistas" element={<Lists type="vistas" title="Vistas"/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Register />} />
         <Route path="/users" element={<Users />} />
         <Route path="/changePassword" element={<ChangePassoword />} />
-        <Route path="/movieDetails/:movieId"  element={<MovieDetails />} />
+        <Route path="/movieDetails/:movieId" element={<MovieDetails />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </>
   );
 };

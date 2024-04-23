@@ -1,20 +1,21 @@
 import React from "react";
+import "../Style/Details.css"
+
 const Details = ({ data }) => {
   return (
     <>
-      <div className="row p-5 bg-secondary bg-gradient">
-        <div className="col-4 ">
+      <div className="contenedor-details">
+        <div className="contenedor-img-details">
           <img
             src={`https://image.tmdb.org/t/p/original/${data.poster_path}`}
-            className="card-img-top"
             alt="..."
           />
         </div>
-        <div className="col-8 pt-5 text-center text-light">
-          <h1 className="text-warning">{data.title + " ( " + data.release_date + " )"}</h1>
-          <h5 className="pt-5">{data.overview}</h5>
-          <h1 className="pt-5 text-warning">Popularity: {data.popularity}</h1>
-          <a href={`${data.homepage}`} className="text-light pt-5">Home Page of {data.title}</a>
+        <div className="contenedor-text-details">
+          <div className="contenedor-titulo-details"> <h1>{data.title + " ( " + data.release_date + " )"}</h1></div>
+          <div className="contendor-informacion-titulo"><h5>{data.overview}</h5></div>
+          <div className="contenedor-popularidad">  <h1 >Popularity: {data.popularity}</h1></div>
+          <div className="home-page-details"><a href={`${data.homepage}`} >Home Page of {data.title}</a></div>
         </div>
       </div>
     </>

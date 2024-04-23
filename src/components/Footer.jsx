@@ -1,48 +1,44 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'; // Asegúrate de importar los íconos que necesitas
+import "../Style/Footer.css";
 
 const Footer = () => {
-  <footer></footer>;
+  const currentYear = new Date().getFullYear();
   return (
-    <>
-      <div className="bg-dark text-center text-white">
-        <div className="container p-4 pb-0">
-          <section className="mb-4">
-            <a
-              className="btn btn-outline-light btn-floating m-1"
-              href="https://www.facebook.com/?locale=es_LA"
-              role="button"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="fab fa-facebook-f"></i>
-            </a>
+    <footer>
+    <div className="contenedor-footer">
+      <div className="contenedor-opciones">
+          <a
+            href="https://www.facebook.com/"
+            role="button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon icon={faFacebook} />
+          </a>
 
-            <a
-              className="btn btn-outline-light btn-floating m-1"
-              href="https://twitter.com/"
-              role="button"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="fab fa-twitter"></i>
-            </a>
+          <a
+            href="https://twitter.com/"
+            role="button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon icon={faTwitter} style={{ color: '#fff' }} />
+          </a>
 
-            <a
-              className="btn btn-outline-light btn-floating m-1"
-              href="https://www.instagram.com"
-              role="button"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="fab fa-instagram"></i>
-            </a>
-
-          </section>
-        </div>
-
-
+          <a
+            href="https://www.instagram.com"
+            role="button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon icon={faInstagram} style={{ color: '#fff' }} />
+          </a>
       </div>
-    </>
+      <div className="derechos-reservados"><p>&copy; {currentYear} LaRePeli. Todos los derechos reservados.</p></div>
+    </div>
+  </footer>
   );
 };
 

@@ -1,0 +1,14 @@
+.error{
+    color: red;
+}
+
+.principal-contenedor-form{
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor-form{
+    background-color: #e0dede;
+    padding: 10px 40px 10px 40px;
+    width: 40%;
+}

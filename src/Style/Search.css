@@ -1,0 +1,9 @@
+.contenedor-input{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.contenedor-input input {
+    width: 70%;
+}

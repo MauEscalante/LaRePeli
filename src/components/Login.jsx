@@ -1,12 +1,29 @@
 import React from "react";
 import { useState } from "react";
+import "../Style/FormLog.css"
 import { Link, useNavigate } from "react-router-dom";
-import {loginUser} from '../dbSimulator'
+import { loginUser } from '../dbSimulator'
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [errors, setErrors] = useState("");
+
+  const validateForm = () => {
+
+    let errors = {}
+    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!email || regexEmail.test(email.value)) {
+      errors.email = "El email es invalido";
+    } if (!password || regexPassword.test(password.value)) {
+      errors.password = "La contraseña es invalida";
+    }
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
 
   const handdleEmail = (e) => {
     setEmail(e.target.value);
@@ -19,22 +36,29 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     //USERS
-    try{
-      const payload=loginUser({email,password})
-      localStorage.setItem("token",payload.id)
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          name: payload.name,
-          id: payload.id,
-          email: payload.email,
-          lastname: payload.lastname,
-        }))
+    try {
+      if (validateForm()){
+        const payload = loginUser({ email, password })
+        localStorage.setItem("token", payload.id)
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            name: payload.name,
+            id: payload.id,
+            email: payload.email,
+            lastname: payload.lastName,
+          }))
+
+          const userNoparse = localStorage.getItem("user");
+          const user = JSON.parse(userNoparse);
+          console.log(user.lastname)
+      }
+
       navigate("/")
-    }catch{
+    } catch {
       alert("Usuario no existe");
     }
-  
+
   };
 
 
@@ -42,8 +66,8 @@ const Login = () => {
   return (
     <>
       <img
-        src={`https://img.freepik.com/free-photo/lightbox-with-popcorn-table_23-2148470123.jpg?t=st=1713364617~exp=1713368217~hmac=0d9c898e45cc946cf4f805c2c7a50da6f8870e9f6fa131a89f48d0e505afda96&w=1380`}
-        style={{ height: '250px', width: '100%' }}
+        src={"../assets/bannerXmen.jpeg"}
+        style={{ maxWidth: 1400 }}
         alt=""
       />
       <div className="container p-5">

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export function ChangePassoword() {
@@ -33,8 +32,8 @@ export function ChangePassoword() {
       };
 */
     const handleSubmit = (e) => {
-        e.preventDefault(); 
-        console.log("Enviado")
+        e.preventDefault();
+        navigate("/")
     }
 
     return (

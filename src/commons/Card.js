@@ -1,15 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {addFavorites} from "../dbSimulator"
+import { addFavorites, addToWatchLater, isFavorite, addToVistas,removeToWatchLater,removeToVistas, removeToFavorites,inWatchLater,inVistas } from "../dbSimulator"
+import "../Style/Card.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart, faEye, faEyeSlash, faList, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 const Card = ({ data }) => {
   const userNoparse = localStorage.getItem("user");
   const user = JSON.parse(userNoparse);
 
-  
+  const [favorito, setFavorito] = useState(false);
+  const [vistas, setVistas] = useState(false);
+  const [verDespues, setVer] = useState(false);
+
+  useEffect(() => {
+    setFavorito(isFavorite(user.id, data.id));
+    setVer(inWatchLater(user.id, data.id))
+    setVistas(inVistas(user.id, data.id))
+  }, [data.id]); // Actualiza cuando cambia el ID de la película
+
+  const toggleFavorite = () => {
+    setFavorito(!favorito);
+    favorito ? addFavorites(data, user.id) : removeToFavorites(data,user.id)
+  };
+
+  const toggleVerDespues = () => {
+    setVer(!verDespues);
+    verDespues ? addToWatchLater(data, user.id) : removeToWatchLater(data,user.id)
+  };
+
+  const toggleVistas = () => {
+    setVistas(!vistas);
+    vistas ? addToVistas(data, user.id) : removeToVistas(data,user.id)
+  };
+
+
   return (
-    <div className="col-3 mt-5" key={data.id}>
-      <div className="card " style={{ width: "18rem" }}>
+
+    <div className="contenedor-card" key={data.id}>
+      <div className="card ">
         <Link to={`/movieDetails/${data.id}`}>
           <img
             src={`https://image.tmdb.org/t/p/original/${data.poster_path}`}
@@ -20,13 +49,39 @@ const Card = ({ data }) => {
         <div className="card-body">
           <h5 className="card-title">{data.original_title}</h5>
           <p className="card-text">{data.overview.slice(0, 80) + "..."}</p>
-          <button
-            className="btn btn-primary"
-            onClick={() => addFavorites({data},user.id)}
-          >
-            Add To Favorites
-          </button>
         </div>
+
+
+        <>
+          <div className="opcion-lista">
+            <div className="opcion" onClick={toggleFavorite}>
+              {!favorito ? (
+                <FontAwesomeIcon icon={faHeart} style={{ color: "#000000" }} />
+              ) : (
+                <FontAwesomeIcon icon={faHeart} style={{ color: '#ef6161' }} />
+              )}</div>
+            <div className="opcion" onClick={toggleVerDespues}>
+
+              {vistas ? (
+                <FontAwesomeIcon icon={faEye} style={{ color: "#000000" }} />
+              ) : (
+                <FontAwesomeIcon icon={faEyeSlash} style={{ color: "#000000" }} />
+              )}
+
+            </div>
+            <div className="opcion" onClick={toggleVistas}>
+
+              {!verDespues ? (
+                <FontAwesomeIcon icon={faPlusCircle} style={{ color: "#000000" }} />
+              ) : (
+                <FontAwesomeIcon icon={faList} style={{ color: "#000000", }} />
+              )}
+
+            </div>
+          </div>
+        </>
+
+
       </div>
     </div>
   );
