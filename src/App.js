@@ -1,5 +1,4 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import ActorDetail from "./components/ActorDetail"
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Register from "./components/Register";
@@ -20,6 +19,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home media="movie" entretenimiento="Peliculas" />} />
         <Route path="/tv" element={<Home media="tv" entretenimiento="Series" />} />
+        <Route path="/actores" element={<Home media="person" entretenimiento="Actores" />} />
+        <Route path="/actores/:actorId" element={<ActorDetail />} />
         <Route path={"/tv/:categoria"} element={<Category media="tv" />} />
         <Route path={"/movie/:categoria"} element={<Category media="movie" />} />
         <Route path="/favorites" element={<Lists type="Favorites" title="Favoritas"/>} />

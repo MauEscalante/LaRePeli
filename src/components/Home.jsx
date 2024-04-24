@@ -2,6 +2,7 @@ import Search from "./Search";
 import React,{useEffect,useState} from "react";
 import axios from "axios";
 import Card from "../commons/Card";
+import CardActor from "../commons/CardActor"
 import "../Style/Home.css"
 
 const Home = ({ media, entretenimiento }) => {
@@ -22,7 +23,7 @@ const Home = ({ media, entretenimiento }) => {
         <h1 className="pt-5">{entretenimiento} populares</h1>
         <div className="contenedor-populars">
           {populars.map((data) => (
-            <Card data={data} key={data.id} />
+            media==="person"?  <CardActor data={data} key={data.id}/> : <Card data={data} key={data.id} />
           ))}
         </div>
       </div>

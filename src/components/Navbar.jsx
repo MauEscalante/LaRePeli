@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "../Style/navbar.css"
+import Search from "./Search";
 
 const Navbar = () => {
   const [estadoOptionList, setEstadoOptionList] = useState(false);
   const initialTipoContenido = localStorage.getItem("tipoContenido") || "movie";
   const [tipoContenido, setTipoContenido] = useState(initialTipoContenido);
 
+    const [mensaje, setMensaje] = useState("")
 
   const userNoparse = localStorage.getItem("user");
   const user = JSON.parse(userNoparse);
@@ -35,6 +37,23 @@ const Navbar = () => {
     setEstadoOptionList(!estadoOptionList);
   }
 
+  const [value, setValue] = useState("");
+  const [entretenimiento, setEntretenimiento] = useState([]);
+
+  const handleValue = (e) => {
+    setValue(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .get(
+        `https://api.themoviedb.org/3/search/person?api_key=425c2d87b8b9c812c4101db1f80fd9e5&language=en-US&query=${value}&include_adult=false`
+      )
+      .then((res) => setEntretenimiento(res.data.results));
+
+  };
+
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
@@ -42,8 +61,6 @@ const Navbar = () => {
 
         <div className="contenedor-nav col-lg-10 col-6">
           <div className="header-center">
-            <input type="checkbox" id="toggle-menu" />
-            <label htmlFor="toggle-menu" className="hamburger">&#9776;</label>
             <ul className="primary-menu nav nav-pills">
               <li className="nav-item" onClick={() => handleActualizarTipoContenido("movie")}><a className="nav-link smoth-animation " href="/">Peliculas</a></li>
               <li className="nav-item" onClick={() => handleActualizarTipoContenido("tv")}><a className="nav-link smoth-animation" href="/tv">Series</a></li>
@@ -94,6 +111,9 @@ const Navbar = () => {
 
                 </ul>
               </li>
+              <li className="nav-item"><a className="nav-link smoth-animation " href="/actores">Actores</a></li>
+              
+
             </ul>
           </div>
         </div>

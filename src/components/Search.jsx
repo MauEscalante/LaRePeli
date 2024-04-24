@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import Card from "../commons/Card";
+import CardActor from "../commons/CardActor"
 
 export function Search({ media }) {
   const [value, setValue] = useState("");
@@ -18,7 +19,7 @@ export function Search({ media }) {
         `https://api.themoviedb.org/3/search/${media}?api_key=425c2d87b8b9c812c4101db1f80fd9e5&language=en-US&query=${value}&include_adult=false`
       )
       .then((res) => setEntretenimiento(res.data.results));
-
+    setValue("")
   };
   return (
     <>
@@ -42,7 +43,7 @@ export function Search({ media }) {
       <div className="container text-center">
         <div className="row">
           {entretenimiento.map((data, i) => (
-            <Card data={data} key={data.id} type="Entreteiment" />
+             media==="person"?  <CardActor data={data} key={data.id}/> : <Card data={data} key={data.id} />
           ))}
         </div>
       </div>

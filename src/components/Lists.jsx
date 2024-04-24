@@ -15,7 +15,7 @@ const List = ({ type, title }) => {
          fetchedList = getFavorites(user.id)
       } else if (type === "VerDespues"){
          fetchedList = getWatchLater(user.id)
-      }else{
+      }else if (type==="person"){
          fetchedList = getVistas(user.id)
       }
       setList(fetchedList)
