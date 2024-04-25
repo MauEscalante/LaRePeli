@@ -5,7 +5,7 @@ import Card from "../commons/Card";
 const Profile = () => {
   const userNoparse = localStorage.getItem("user");
   const user = JSON.parse(userNoparse);
-  const [favorito, setFavorito] = useState([]); 
+  const [favorito, setFavorito] = useState([]);
   const [verDespues, setVerDespues] = useState([]);
   const [vistas, setVistas] = useState([]);
 
@@ -14,13 +14,13 @@ const Profile = () => {
       setFavorito(getFavorites(user.id))
       setVerDespues(getWatchLater(user.id))
       setVistas(getVistas(user.id))
-       
+
     };
 
     fetchList();
   }, []);
 
-  
+
 
   return (
     <>
@@ -41,10 +41,10 @@ const Profile = () => {
             </div>
           </div>
 
-          <div className="container text-center">
+          <div className="container text-center ">
             <h1 className="pt-5">Favoritos</h1>
-            <div className="row">
-              {favorito.map((data, i) => (
+            <div className="contenedor-populars">
+              {favorito.map((data) => (
                 <Card data={data} key={data.id} />
               ))}
             </div>
@@ -52,7 +52,7 @@ const Profile = () => {
 
           <div className="container text-center">
             <h1 className="pt-5">Ver despues</h1>
-            <div className="row">
+            <div className="contenedor-populars">
               {verDespues.map((data, i) => (
                 <Card data={data} key={data.id} />
               ))}
@@ -61,9 +61,9 @@ const Profile = () => {
 
           <div className="container text-center">
             <h1 className="pt-5">Vistas</h1>
-            <div className="row">
+            <div className="contenedor-populars">
               {vistas.map((data, i) => (
-                <Card data={data} key={data.id}/>
+                <Card data={data} key={data.id} />
               ))}
             </div>
           </div>
