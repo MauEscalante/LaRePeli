@@ -41,10 +41,9 @@ export function Search({ media }) {
       </div>
 
       <div className="container text-center ">
-        <h1 className="pt-5">Films</h1>
         <div className="contenedor-populars">
           {entretenimiento.map((data) => (
-             media==="person"?  <CardActor data={data} key={data.id}/> : <Card data={data} key={data.id} />
+             media==="person" ?  <CardActor data={data} key={data.id}/> : <Card data={data} key={data.id}  />
           ))}
         </div>
       </div>

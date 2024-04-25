@@ -4,6 +4,7 @@ import { addFavorites, addToWatchLater, isFavorite, addToVistas, removeToWatchLa
 import "../Style/Card.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faEye, faEyeSlash, faList, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import filmNotAvaible from "../assets/filmNotAvaible.png"
 
 const Card = ({ data }) => {
   const userNoparse = localStorage.getItem("user");
@@ -46,11 +47,18 @@ const Card = ({ data }) => {
     <div className="contenedor-card" key={data.id}>
       <div className="card ">
         <Link to={`/movieDetails/${data.id}`}>
-          <img
-            src={`https://image.tmdb.org/t/p/original/${data.poster_path}`}
-            className="card-img-top"
-            alt="..."
-          />
+          {
+            data.poster_path ? <img
+              src={`https://image.tmdb.org/t/p/original/${data.poster_path}`}
+              className="card-img-top"
+              alt="..."
+            /> :
+              <img
+                src={filmNotAvaible}
+                className="card-img-top"
+                alt="..."
+              />
+          }
         </Link>
         <div className="card-body">
           <h5 className="card-title">{data.original_title}</h5>
