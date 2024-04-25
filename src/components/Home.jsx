@@ -18,16 +18,16 @@ const Home = ({ media, entretenimiento }) => {
 
   return (
     <>
-      <Search media={media} />
-      <div className="container text-center ">
-        <h1 className="pt-5">{entretenimiento} populares</h1>
-        <div className="contenedor-populars">
-          {populars.map((data) => (
-            media==="person"?  <CardActor data={data} key={data.id}/> : <Card data={data} key={data.id} />
-          ))}
-        </div>
+    <Search media={media} />
+    <div className="container text-center ">
+      <h1 className="pt-5">{entretenimiento} populares</h1>
+      <div className="contenedor-populars">
+        {populars.map((data) => (
+          media==="person"?  <CardActor data={data} key={data.id}/> : <Card data={data} key={data.id} />
+        ))}
       </div>
-    </>
+    </div>
+  </>
   );
 };
 

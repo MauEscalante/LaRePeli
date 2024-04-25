@@ -40,9 +40,10 @@ export function Search({ media }) {
         </form>
       </div>
 
-      <div className="container text-center">
-        <div className="row">
-          {entretenimiento.map((data, i) => (
+      <div className="container text-center ">
+        <h1 className="pt-5">Films</h1>
+        <div className="contenedor-populars">
+          {entretenimiento.map((data) => (
              media==="person"?  <CardActor data={data} key={data.id}/> : <Card data={data} key={data.id} />
           ))}
         </div>
