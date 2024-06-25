@@ -42,7 +42,7 @@ const Card = ({ data, media }) => {
   const toggleFavorite = async () => {
     if (data) {
       setFavorito(!favorito);
-      favorito ?  await addFavorites(data) : await removeToFavorites(data.id) 
+      favorito ?   await removeToFavorites(data.id) : await addFavorites(data)
     }
   };
 
@@ -91,7 +91,7 @@ const Card = ({ data, media }) => {
         {token && (
           <div className="opcion-lista">
             <div className="opcion" onClick={toggleFavorite}>
-              {favorito ? (
+              {!favorito ? (
                 <FontAwesomeIcon
                   icon={faHeart}
                   style={{ color: "#000000" }}
@@ -106,7 +106,7 @@ const Card = ({ data, media }) => {
               )}
             </div>
             <div className="opcion" onClick={toggleVistas}>
-              {!vistas ? (
+              {vistas ? (
                 <FontAwesomeIcon
                   icon={faEye}
                   style={{ color: "#000000" }}

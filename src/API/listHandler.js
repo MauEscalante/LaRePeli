@@ -16,13 +16,15 @@ export const getUsuario = async () => {
 
 ////////////FAVORITES //////////////////////
 export const addFavorites = async (data) => {
-  try{
+  try {
     const token = localStorage.getItem("token");
-  const response = await axios.post("http://localhost:3000/lists/favorites", 
-    data, {headers: { "x-acces-token": token },
-  });
-  return response.data;
-  }catch(e){
+    const response = await axios.post(
+      "http://localhost:3000/lists/favorites",
+      data,
+      { headers: { "x-acces-token": token } }
+    );
+    return response.data;
+  } catch (e) {
     console.log(e.response.data.errors);
   }
 };
@@ -58,19 +60,23 @@ export const removeToFavorites = async (itemId) => {
     );
     return response.data;
   } catch (e) {
-    alert(e.response.data);
+    alert(e.response);
   }
 };
 
 ////////////WATCH LATER //////////////////////
 export const addWatchLater = async (data) => {
-  const token = localStorage.getItem("token");
-  const response = await axios.post(
-    "http://localhost:3000/lists/watchLater",
-    data,
-    { headers: { "x-acces-token": token } }
-  );
-  return response.data;
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.post(
+      "http://localhost:3000/lists/watchLater",
+      data,
+      { headers: { "x-acces-token": token } }
+    );
+    return response.data;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const getWatchLater = async () => {
@@ -104,19 +110,23 @@ export const removeToWatchLater = async (itemId) => {
     );
     return response.data;
   } catch (e) {
-    alert(e.response.data);
+    console.log(e);
   }
 };
 
 ////////////WATCHED //////////////////////
 export const addWatched = async (data) => {
-  const token = localStorage.getItem("token");
-  const response = await axios.post(
-    "http://localhost:3000/lists/watched",
-    data,
-    { headers: { "x-acces-token": token } }
-  );
-  return response.data;
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.post(
+      "http://localhost:3000/lists/watched",
+      data,
+      { headers: { "x-acces-token": token } }
+    );
+    return response.data;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const getWatched = async () => {
@@ -136,15 +146,18 @@ export const isWatched = async (filmId) => {
   return response.data;
 };
 
-export const removeToWatched = async (_id) => {
+export const removeToWatched = async (itemId) => {
   try {
     const token = localStorage.getItem("token");
-    const response = await axios.delete("http://localhost:3000/lists/watched", 
-      _id,
-    { headers: { "x-acces-token": token } }
-  );
+    const response = await axios.delete(
+      "http://localhost:3000/lists/watched",
+      {
+        data: { _id: itemId },
+        headers: { "x-acces-token": token },
+      }
+    );
     return response.data;
   } catch (e) {
-    alert(e.response.data);
+    console.log(e);
   }
 };
