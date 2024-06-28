@@ -30,9 +30,10 @@ const Card = ({ data, media }) => {
 
   useEffect(() => {
     const fetchList = async () => {
-      setFavorito(await isFavorite(data.id));
-      setVer(await inWatchLater(data.id));
-      setVistas(await isWatched(data.id));
+      
+      setFavorito(await isFavorite(data.id || data._id));
+      setVer(await inWatchLater(data.id || data._id));
+      setVistas(await isWatched(data.id || data._id));
     };
 
     if (token) {
@@ -42,28 +43,28 @@ const Card = ({ data, media }) => {
   const toggleFavorite = async () => {
     if (data) {
       setFavorito(!favorito);
-      favorito ?   await removeToFavorites(data.id) : await addFavorites(data)
+      favorito ?   await removeToFavorites(data.id || data._id) : await addFavorites(data)
     }
   };
 
   const toggleVerDespues = async () => {
     if (data) {
       setVer(!verDespues);
-      verDespues ? await removeToWatchLater(data.id) : await addWatchLater(data);
+      verDespues ? await removeToWatchLater(data.id || data._id) : await addWatchLater(data);
     }
   };
 
   const toggleVistas = async () => {
     if (data) {
       setVistas(!vistas);
-      vistas ? await removeToWatched(data.id) : await addWatched(data);
+      vistas ? await removeToWatched(data.id || data._id) : await addWatched(data);
     }
   };
 
   return (
-    <div className="contenedor-card" key={data.id}>
+    <div className="contenedor-card" key={data.id || data._id}>
       <div className="card">
-        <Link to={`/${media}/${data.id}`}>
+        <Link to={`/${media}/${data.id || data._id}`}>
           {data.poster_path ? (
             <img
               src={`https://image.tmdb.org/t/p/original/${data.poster_path}`}

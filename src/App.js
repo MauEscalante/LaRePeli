@@ -7,7 +7,9 @@ import Lists from "./components/Lists";
 import MovieDetails from "./components/MovieDetails";
 import Profile from "./components/Profile";
 import Footer from "./components/Footer";
-import { ChangePassoword } from "./components/changePassword";
+import { ChangePassword } from "./components/changePassword";
+import { InsertEmail } from "./components/InsertEmail";
+import { InsertCode } from "./components/InsertCode";
 
 const App = () => {
 
@@ -23,9 +25,11 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/changePassword" element={<ChangePassoword />} />
+        <Route path="/changePassword" element={<ChangePassword />} />
         <Route path="/movie/:movieId" element={<MovieDetails media={"movie"} />} />
         <Route path="/tv/:movieId" element={<MovieDetails media={"tv"}/>} />
+        <Route path="/insertEmail" element={<InsertEmail/>}/>
+        <Route path="/insertCode" element={<InsertCode/>}/>
       </Routes>
       <Footer />
     </>

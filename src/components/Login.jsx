@@ -87,7 +87,7 @@ const Login = () => {
                 Login
               </button>
               <div className="botones cambiar-contraseña">
-                  <p className="crear-cuenta" ><a href="/changePassword">¿did you forget your password?</a></p>
+                  <p className="crear-cuenta" ><a href="/insertEmail">¿did you forget your password?</a></p>
               </div>
             </form>
           </div>
