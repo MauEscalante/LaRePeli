@@ -41,7 +41,7 @@ const Login = () => {
       }
      
     } catch {
-      alert("Usuario no existe");
+      alert("Usuario o contraseña erronea");
     }
 
   };
