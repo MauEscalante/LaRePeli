@@ -2,6 +2,11 @@
     color: red;
 }
 
+.principal-contenedor-form-email{
+    padding: 60px 0px;
+}
+
+.principal-contenedor-form-email,
 .principal-contenedor-form{
     display: flex;
     justify-content: center;
@@ -22,6 +27,7 @@
     font-size: 16px;
 }
 
+.principal-contenedor-form-email .contenedor-form h1,
 .principal-contenedor-form .contenedor-form h1{
     font-size: 40px;
     color: #000;

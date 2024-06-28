@@ -21,20 +21,30 @@ const List = ({ type, title }) => {
     };
 
     fetchList();
-  },[type, token]);
+  },[type, token,lists]);
 
 
 
   return (
     <>
+      {lists.length === 0 ?
+      <div className="contenedor-lists-oculto">
+        <div className="contenedor-titulo"><h1>{title} </h1></div>
+        <div className="contenedor-film-oculto">
+ 
+        <p>List is empty</p>
+       </div>
+      </div>
+      :
       <div className="contenedor-lists">
         <div className="contenedor-titulo"><h1>{title} </h1></div>
-          <div className="contenedor-film">
-          {lists.map((data, i) => (
-            <Card data={data} media = {data.media} key={data.id} />
-          ))}
-        </div>
+        <div className="contenedor-film">
+      {lists.map((data, i) => (
+      <Card data={data} media = {data.media} key={data.id} />
+     
+    ))}
       </div>
+    </div> }
     </>
   );
 };

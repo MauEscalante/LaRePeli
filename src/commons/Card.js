@@ -111,13 +111,13 @@ const Card = ({ data, media }) => {
                 <FontAwesomeIcon
                   icon={faEye}
                   style={{ color: "#000000" }}
-                  title="add View List"
+                  title="delete from View List"
                 />
               ) : (
                 <FontAwesomeIcon
                   icon={faEyeSlash}
                   style={{ color: "#000000" }}
-                  title="delete from View List"
+                  title="add View List"
                 />
               )}
             </div>

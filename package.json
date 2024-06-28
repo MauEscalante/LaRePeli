@@ -38,8 +38,7 @@
         "web-vitals": "^2.1.4"
     },
     "scripts": {
-        "start": "concurrently 'npm run server' 'npm run client'",
-        "server": "nodemon api/server",
+
         "client": "react-scripts start"
     },
     "eslintConfig": {

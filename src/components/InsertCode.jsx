@@ -77,7 +77,7 @@ export function InsertCode() {
             if (validateForm()) {
                 try{
                     const response = await axios.get(
-                        "http://localhost:3000/user/validateCode",
+                        "http://localhost:8000/user/validateCode",
                         {   params:{code:code},
                             headers: { "x-acces-token": tokenCode } }
                       );
@@ -89,6 +89,7 @@ export function InsertCode() {
                     }
                 }catch(e){
                     console.log(e.response);
+                    setErrors("invalid code.")
                 }
                 
             }

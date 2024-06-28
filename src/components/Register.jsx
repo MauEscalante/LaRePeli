@@ -44,10 +44,11 @@ const Register = () => {
 
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    try{
+       e.preventDefault();
   
       if (validateForm()) {
-        const response = await axios.post('http://localhost:3000/auth/singup', {
+        const response = await axios.post('http://localhost:8000/auth/singup', {
           name,
           lastname,
           email,
@@ -58,6 +59,12 @@ const Register = () => {
           navigate('/home')
     } 
   }
+    }catch(e){
+      const errors ={};
+      errors.email="exist user.";
+      setErrors(errors);;
+    }
+   
   };
 
   return (

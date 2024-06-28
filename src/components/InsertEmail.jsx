@@ -27,7 +27,7 @@ export function InsertEmail(){
         e.preventDefault();
         if (validateForm()){
           const response = await axios.get(
-            "http://localhost:3000/user/getCode",{
+            "http://localhost:8000/user/getCode",{
               params: {email:email}
             }
           );
@@ -36,7 +36,9 @@ export function InsertEmail(){
         }
        
       } catch (e){
-        console.log(e);
+        const errors ={};
+        errors.email="user not exist";
+        setErrors(errors);
       }
   
     };

@@ -32,7 +32,7 @@ const Login = () => {
     //USERS
     try {
       if (validateForm()){
-        const response = await axios.post('http://localhost:3000/auth/signin', {
+        const response = await axios.post('http://localhost:8000/auth/signin', {
           email,
           password
         });
@@ -41,7 +41,9 @@ const Login = () => {
       }
      
     } catch {
-      alert("Usuario o contraseña erronea");
+      const errors ={};
+      errors.email="fail login,try again.";
+      setErrors(errors);
     }
 
   };
